@@ -1,67 +1,83 @@
-# ARTOOLS — Site de produto em Astro
+<div align="center">
 
-> Projeto de estudo desenvolvido por um aluno iniciante em Desenvolvimento de Sistemas para praticar criação de interfaces, componentização e interações no front-end.
+# ARTOOLS — Experiência digital de produto
 
-![Astro](https://img.shields.io/badge/Astro-7.3-BC52EE?style=flat-square&logo=astro&logoColor=white)
+Projeto de estudo desenvolvido em **Astro** para apresentar uma caneta de precisão por meio de uma experiência visual responsiva, componentizada e interativa.
+
+[![Astro](https://img.shields.io/badge/Astro-7.3-BC52EE?style=flat-square&logo=astro&logoColor=white)](https://astro.build/)
 ![HTML5](https://img.shields.io/badge/HTML5-semântico-E34F26?style=flat-square&logo=html5&logoColor=white)
 ![CSS3](https://img.shields.io/badge/CSS3-responsivo-1572B6?style=flat-square&logo=css3&logoColor=white)
 ![JavaScript](https://img.shields.io/badge/JavaScript-interações-F7DF1E?style=flat-square&logo=javascript&logoColor=111)
 
-![Prévia do projeto ARTOOLS](public/assets/images/artools-pen-studio.png)
+### [Acessar demonstração na Vercel →](https://site-caneta-chi.vercel.app)
 
-## Sobre o projeto
+[Início](https://site-caneta-chi.vercel.app) · [Catálogo](https://site-caneta-chi.vercel.app/pagina-2) · [Detalhes do produto](https://site-caneta-chi.vercel.app/pagina-3)
 
-ARTOOLS é uma experiência digital fictícia para apresentar uma caneta de precisão. O projeto reúne uma landing page, um catálogo com diferentes modelos e uma página de detalhes do produto.
+</div>
 
-O site foi criado para transformar um conceito visual em uma interface navegável, responsiva e organizada em componentes reutilizáveis.
+![Caneta ARTOOLS fotografada em estúdio](public/assets/images/artools-pen-studio.png)
 
-## Objetivo de aprendizado
+## Visão geral
 
-Este projeto foi desenvolvido para praticar:
+ARTOOLS é um site fictício de apresentação e catálogo de canetas premium. O projeto começou como um exercício de landing page e evoluiu para uma experiência completa com três páginas conectadas, componentes reutilizáveis e interações desenvolvidas no front-end.
 
-- Estruturação de páginas com Astro;
-- Criação e reutilização de componentes;
-- HTML semântico e organização de conteúdo;
-- Layouts responsivos com CSS;
-- Animações e transições de interface;
-- Manipulação do DOM com JavaScript;
-- Navegação entre páginas;
-- Organização de arquivos e versionamento com Git.
+Sou estudante iniciante em **Desenvolvimento de Sistemas** e construí este projeto para aplicar conhecimentos de estruturação de páginas, responsividade, componentização, manipulação do DOM e organização de código.
 
-## O que desenvolvi
+## Minha contribuição
 
-- **Landing page:** apresentação imersiva do produto com vídeo controlado pela rolagem, animações de entrada, cards e ficha técnica;
-- **Catálogo:** grade responsiva com nove modelos de caneta, informações resumidas e componentes reutilizáveis;
-- **Página de produto:** galeria de imagens, seleção visual de acabamento, preço, especificações e detalhes do modelo;
-- **Formulário “Avise-me”:** modal com campos de nome, e-mail e telefone, validação nativa e confirmação visual;
-- **Navegação global:** cabeçalho compartilhado que conecta as três páginas e indica a rota atual;
-- **Design responsivo:** adaptação para computadores, tablets e celulares;
-- **Acessibilidade básica:** textos alternativos, labels, estados de foco, atributos ARIA e suporte a redução de movimento.
+Neste projeto, desenvolvi:
 
-## Páginas
+- A estrutura completa das três páginas em Astro;
+- O sistema visual e os layouts responsivos;
+- Componentes compartilhados de cabeçalho, rodapé, botões, cards e ficha técnica;
+- A navegação global com indicação automática da página atual;
+- As animações de entrada, rolagem e interação com o ponteiro;
+- O catálogo com nove modelos de caneta;
+- A galeria e a seleção visual de acabamento na página de produto;
+- O modal “Avise-me” com nome, e-mail, telefone e validação de campos;
+- A organização dos assets, rotas e conteúdo do projeto;
+- A publicação do site na Vercel.
 
-| Página | Rota | Conteúdo |
-| --- | --- | --- |
-| Início | `/` | Apresentação da marca, experiência visual e especificações da caneta |
-| Catálogo | `/pagina-2` | Nove modelos de produto em cards reutilizáveis |
-| Produto | `/pagina-3` | Galeria, detalhes, acabamentos e formulário de interesse |
+## Funcionalidades
+
+### Página inicial
+
+- Apresentação imersiva do produto;
+- Vídeo sincronizado com a rolagem;
+- Seções editoriais com animações de entrada;
+- Cards com microinterações;
+- Marquee contínuo e ficha técnica;
+- Navegação responsiva para as demais páginas.
+
+### Catálogo
+
+- Grade responsiva com nove produtos;
+- Cards gerados por um componente reutilizável;
+- Imagem, nome, descrição e especificação de cada modelo;
+- Botões que direcionam para a página de detalhes.
+
+### Detalhes do produto
+
+- Galeria com miniaturas selecionáveis;
+- Informações de preço, acabamento e especificações;
+- Seleção visual de modelos;
+- Modal de interesse aberto pelo botão “Avise-me”;
+- Formulário com validação nativa e confirmação visual.
 
 ## Tecnologias e ferramentas
 
-| Tecnologia | Como foi utilizada |
+| Tecnologia | Aplicação no projeto |
 | --- | --- |
-| **Astro 7** | Estrutura do projeto, criação das páginas, layouts e componentes `.astro` |
-| **HTML5** | Estrutura semântica, formulários, navegação e elementos de mídia |
-| **CSS3** | Grid, Flexbox, responsividade, animações, transições e identidade visual |
-| **JavaScript / TypeScript** | Galeria, modal, validação do formulário e interações durante rolagem e movimento do ponteiro |
-| **Web APIs** | `IntersectionObserver`, `requestAnimationFrame`, `matchMedia` e elemento `<dialog>` |
-| **Node.js e npm** | Instalação das dependências e execução dos comandos do projeto |
+| **Astro 7** | Páginas, layouts, componentes e geração do site estático |
+| **HTML5** | Estrutura semântica, navegação, mídia e formulários |
+| **CSS3** | Grid, Flexbox, responsividade, animações e identidade visual |
+| **JavaScript / TypeScript** | Galeria, modal, formulário e interações com rolagem e ponteiro |
+| **Web APIs** | `IntersectionObserver`, `requestAnimationFrame`, `matchMedia` e `<dialog>` |
+| **Node.js e npm** | Ambiente de desenvolvimento e gerenciamento de dependências |
 | **Git e GitHub** | Versionamento e publicação do código-fonte |
-| **Google Fonts** | Uso das famílias Inter, Inter Tight, JetBrains Mono e Cormorant Garamond |
+| **Vercel** | Build e hospedagem da versão pública |
 
-## Componentização
-
-Os elementos repetidos foram separados em componentes para facilitar manutenção e reutilização:
+## Organização do código
 
 ```text
 src/
@@ -81,62 +97,45 @@ src/
     └── pagina-3.astro
 ```
 
-O `Layout.astro` reúne a estrutura compartilhada do documento, enquanto `Header.astro` e `Footer.astro` mantêm a navegação e a identidade visual consistentes entre as páginas.
+O `Layout.astro` concentra a estrutura comum do documento. O cabeçalho e o rodapé são compartilhados entre as páginas, enquanto cards e botões recebem conteúdo por propriedades para reduzir repetição de marcação.
 
-## Como executar localmente
+## Decisões técnicas
 
-### Pré-requisitos
+- **Componentização:** elementos repetidos foram isolados para facilitar manutenção e reutilização;
+- **Geração estática:** o Astro gera páginas que podem ser publicadas diretamente na Vercel;
+- **JavaScript direcionado:** os scripts são usados nas interações que precisam de comportamento no navegador;
+- **Responsividade:** os layouts se reorganizam para desktop, tablet e celular;
+- **Acessibilidade:** foram utilizados HTML semântico, textos alternativos, labels, foco visível, atributos ARIA e suporte a `prefers-reduced-motion`.
 
-- [Node.js](https://nodejs.org/) 22.12 ou superior;
-- npm, instalado com o Node.js;
-- Git, caso queira clonar o repositório.
+## Competências praticadas
 
-### Instalação
+- Desenvolvimento front-end;
+- Construção de interfaces responsivas;
+- Componentização com Astro;
+- Organização e manutenção de CSS;
+- Manipulação do DOM;
+- Animações e microinterações;
+- Navegação entre páginas;
+- Controle de versão com Git;
+- Deploy contínuo com GitHub e Vercel.
 
-Depois de baixar ou clonar o repositório, abra a pasta do projeto e execute:
+## Status e limitações
 
-```bash
-npm install
-```
+O projeto está publicado e disponível para navegação. A experiência visual e as interações principais estão funcionais.
 
-### Desenvolvimento
+O formulário “Avise-me” representa o fluxo de interface e realiza validação no navegador. Os dados ainda não são enviados para uma API ou banco de dados. Os produtos, a marca e os valores apresentados são fictícios e foram criados exclusivamente para estudo.
 
-```bash
-npm run dev
-```
+## Próximas melhorias
 
-Acesse `http://localhost:4321` no navegador.
-
-### Build de produção
-
-```bash
-npm run build
-npm run preview
-```
-
-## Principais aprendizados
-
-Durante o desenvolvimento, pratiquei como dividir uma interface em componentes menores, manter um padrão visual entre páginas e criar interações com JavaScript sem perder a adaptação para diferentes tamanhos de tela.
-
-Também trabalhei com hierarquia visual, estados de navegação, feedback de ações e organização do código para facilitar futuras alterações.
-
-## Limitações atuais
-
-- O formulário “Avise-me” possui validação e confirmação na interface, mas ainda não envia os dados para um servidor;
-- Os produtos utilizam uma página de detalhes demonstrativa compartilhada;
-- O conteúdo, a marca e os valores apresentados são fictícios e foram criados para fins de estudo.
-
-## Próximos passos
-
-- Integrar o formulário a uma API ou banco de dados;
-- Criar rotas individuais para cada produto;
+- Integrar o formulário a uma API e banco de dados;
+- Criar uma rota de detalhes individual para cada produto;
 - Adicionar máscara e validação aprimorada ao telefone;
-- Otimizar imagens e métricas de carregamento;
+- Otimizar as imagens e as métricas de carregamento;
 - Adicionar testes de interface e acessibilidade;
-- Publicar uma demonstração atualizada do projeto.
+- Implementar monitoramento de desempenho e navegação.
 
 ## Sobre mim
 
-Sou estudante iniciante em Desenvolvimento de Sistemas e estou construindo projetos práticos para desenvolver minhas habilidades em front-end, organização de código e criação de experiências para a web.
+Sou estudante de Desenvolvimento de Sistemas em início de carreira. Utilizo projetos práticos para transformar o conteúdo estudado em experiências funcionais e fortalecer meus conhecimentos em desenvolvimento web.
 
-Este repositório registra parte do meu processo de aprendizado e demonstra o que já consigo desenvolver com as tecnologias apresentadas acima.
+Este projeto demonstra minha evolução em front-end, minha atenção à organização do código e minha capacidade de desenvolver uma interface completa a partir de uma proposta visual.
