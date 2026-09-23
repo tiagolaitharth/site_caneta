@@ -6,12 +6,14 @@ interface Props {
   title?: string;
   description?: string;
   themeColor?: string;
+  preloadImage?: string;
 }
 
 const {
   title = 'ARTOOLS — Caneta especial',
   description = 'Uma nova forma de escrever, criar e registrar ideias.',
   themeColor = '#f4f4ee',
+  preloadImage,
 } = Astro.props;
 ---
 
@@ -23,6 +25,7 @@ const {
     <meta name="theme-color" content={themeColor} />
     <meta name="description" content={description} />
     <meta name="generator" content={Astro.generator} />
+    {preloadImage && <link rel="preload" as="image" href={preloadImage} fetchpriority="high" />}
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="icon" href="/favicon.ico" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />

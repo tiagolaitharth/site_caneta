@@ -1,25 +1,35 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Button from '../components/Button.astro';
+import { Image, getImage } from 'astro:assets';
+import penPearl from '../assets/images/catalog/6061-pearl.png';
+import penSignature from '../assets/images/catalog/signature-blanc.png';
+import penPalladium from '../assets/images/catalog/palladium-line.png';
+import penObsidian from '../assets/images/catalog/obsidian-no-01.png';
 
 const gallery = [
   {
-    src: '/assets/images/catalog/6061-pearl.png',
+    src: penPearl,
     alt: 'Caneta ArtTools 6061 Pearl em vista de estúdio',
   },
   {
-    src: '/assets/images/catalog/signature-blanc.png',
+    src: penSignature,
     alt: 'Caneta ArtTools Signature Blanc em vista de estúdio',
   },
   {
-    src: '/assets/images/catalog/palladium-line.png',
+    src: penPalladium,
     alt: 'Caneta ArtTools Palladium Line em vista de estúdio',
   },
   {
-    src: '/assets/images/catalog/obsidian-no-01.png',
+    src: penObsidian,
     alt: 'Caneta ArtTools Obsidian em vista de estúdio',
   },
 ];
+
+const galleryOptimized = await Promise.all(gallery.map(async (image) => ({
+  ...image,
+  displaySrc: (await getImage({ src: image.src, width: 1200, format: 'webp', quality: 82 })).src,
+})));
 
 const specs = [
   ['Corpo', 'Alumínio 6061-T6'],
@@ -53,26 +63,30 @@ const finishes = [
           <figure class="main-image">
             <span class="release-label">Novo lançamento</span>
             <span class="edition-label">01 / Pearl</span>
-            <img
+            <Image
               id="main-product-image"
               src={gallery[0].src}
               alt={gallery[0].alt}
-              width="1536"
-              height="1152"
+              width={1200}
+              height={900}
+              format="webp"
+              quality={82}
+              loading="eager"
+              fetchpriority="high"
             />
           </figure>
 
           <div class="thumbnails" aria-label="Outras vistas e acabamentos">
-            {gallery.map((image, index) => (
+            {galleryOptimized.map((image, index) => (
               <button
                 class:list={['thumbnail', { active: index === 0 }]}
                 type="button"
-                data-image={image.src}
+                data-image={image.displaySrc}
                 data-alt={image.alt}
                 aria-label={`Exibir imagem ${index + 1}`}
                 aria-pressed={index === 0 ? 'true' : 'false'}
               >
-                <img src={image.src} alt="" width="1536" height="1152" loading="lazy" />
+                <Image src={image.src} alt="" width={240} height={180} format="webp" quality={72} loading="lazy" />
               </button>
             ))}
           </div>
