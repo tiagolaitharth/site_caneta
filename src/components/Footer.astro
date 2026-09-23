@@ -1,0 +1,65 @@
+---
+const year = new Date().getFullYear();
+---
+
+<footer class="site-footer" aria-label="Rodapé">
+  <a class="footer-brand" href="/" aria-label="ArtTools Precision — voltar ao início">
+    Artools<span>.Precision</span>
+  </a>
+  <p>
+    Concebida para ideias em movimento.<br />
+    © {year} Artools
+  </p>
+</footer>
+
+<style>
+  .site-footer {
+    position: relative;
+    z-index: 3;
+    min-height: 118px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 32px;
+    padding: 28px clamp(28px, 6vw, 98px);
+    border-top: 1px solid rgba(255, 255, 255, .12);
+    color: rgba(255, 255, 255, .68);
+    background:
+      radial-gradient(circle at 78% 0, rgba(255, 255, 255, .055), transparent 32%),
+      #10110e;
+  }
+
+  .footer-brand {
+    color: inherit;
+    font-size: 18px;
+    font-weight: 650;
+    letter-spacing: -.045em;
+    text-decoration: none;
+  }
+
+  .footer-brand span {
+    color: rgba(255, 255, 255, .46);
+    font-weight: 350;
+  }
+
+  p {
+    margin: 0;
+    text-align: right;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 8px;
+    line-height: 1.7;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+  }
+
+  @media (max-width: 680px) {
+    .site-footer {
+      min-height: 94px;
+      padding: 24px 28px;
+    }
+
+    p {
+      display: none;
+    }
+  }
+</style>

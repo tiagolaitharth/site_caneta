@@ -1,0 +1,201 @@
+---
+import Layout from '../layouts/Layout.astro';
+import ProductCard from '../components/ProductCard.astro';
+
+const products = [
+  {
+    name: '6061 Pearl',
+    image: '/assets/images/catalog/6061-pearl.png',
+    detail: 'Corpo usinado em alumínio aeroespacial com equilíbrio central.',
+    specification: '142 mm · 20 g',
+    accentColor: '#20211e',
+  },
+  {
+    name: 'Obsidian No. 01',
+    image: '/assets/images/catalog/obsidian-no-01.png',
+    detail: 'Acabamento grafite fosco para sessões longas de criação.',
+    specification: 'Ponta 0,5 mm',
+    accentColor: '#11120f',
+  },
+  {
+    name: 'Atelier Champagne',
+    image: '/assets/images/catalog/atelier-champagne.png',
+    detail: 'Construção em latão escovado com presença e peso controlados.',
+    specification: '28 g · 50/50',
+    accentColor: '#514329',
+  },
+  {
+    name: 'Carbon Édition',
+    image: '/assets/images/catalog/carbon-edition.png',
+    detail: 'Estrutura leve em fibra de carbono para movimentos rápidos.',
+    specification: '14 g · 140 mm',
+    accentColor: '#85867f',
+  },
+  {
+    name: 'Archive Onyx',
+    image: '/assets/images/catalog/archive-onyx.png',
+    detail: 'Projetada para tinta documental e registros de longa duração.',
+    specification: 'Ponta 0,7 mm',
+    accentColor: '#d6d7d0',
+  },
+  {
+    name: 'Palladium Line',
+    image: '/assets/images/catalog/palladium-line.png',
+    detail: 'Corpo hexagonal que oferece apoio firme e controle preciso.',
+    specification: '18 g · 6 faces',
+    accentColor: '#5d605c',
+  },
+  {
+    name: 'Travertine Ivory',
+    image: '/assets/images/catalog/travertine-ivory.png',
+    detail: 'Formato compacto para acompanhar cadernos e rotinas móveis.',
+    specification: '118 mm · 16 g',
+    accentColor: '#a24f36',
+  },
+  {
+    name: 'Titanium Série V',
+    image: '/assets/images/catalog/titanium-serie-v.png',
+    detail: 'Titânio grau 5 com alta resistência e textura micro-grip.',
+    specification: '22 g · Ra 0,8 μm',
+    accentColor: '#2d302d',
+  },
+  {
+    name: 'Signature Blanc',
+    image: '/assets/images/catalog/signature-blanc.png',
+    detail: 'Edição clara numerada, criada para coleções especiais.',
+    specification: '1 de 500',
+    accentColor: '#dfff00',
+  },
+];
+---
+
+<Layout title="Catálogo | ARTOOLS" description="Conheça a coleção de canetas ArtTools.">
+  <main class="catalog">
+    <header class="catalog-heading">
+      <span class="catalog-kicker">Catálogo 2026</span>
+      <h1>Nove instrumentos.<br /><span>Nove formas de criar.</span></h1>
+      <p>
+        Uma coleção de canetas concebidas para diferentes ritmos,
+        materiais e maneiras de transformar ideias em traços.
+      </p>
+    </header>
+
+    <section class="catalog-grid" aria-label="Canetas da coleção">
+      {products.map((product, index) => (
+        <ProductCard index={index + 1} {...product} />
+      ))}
+    </section>
+  </main>
+</Layout>
+
+<style>
+  .catalog {
+    min-height: 100svh;
+    padding: clamp(136px, 15vw, 210px) clamp(20px, 5vw, 78px) clamp(90px, 10vw, 150px);
+    background:
+      radial-gradient(circle at 82% 4%, rgba(255, 255, 255, .96), transparent 28%),
+      var(--paper);
+  }
+
+  .catalog-heading,
+  .catalog-grid {
+    width: min(100%, 1440px);
+    margin-inline: auto;
+  }
+
+  .catalog-heading {
+    max-width: 1440px;
+    margin-bottom: clamp(62px, 8vw, 112px);
+  }
+
+  .catalog-kicker {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 23px;
+    color: var(--muted);
+    font: 500 10px "JetBrains Mono", monospace;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+  }
+
+  .catalog-kicker::before {
+    content: "";
+    width: 8px;
+    height: 8px;
+    border: 1px solid currentColor;
+    border-radius: 50%;
+  }
+
+  h1 {
+    max-width: 1020px;
+    margin: 0;
+    opacity: 0;
+    transform: translateY(28px);
+    animation: catalogFadeIn .9s .12s var(--ease) forwards;
+    color: var(--ink);
+    font-family: "Inter Tight", Inter, sans-serif;
+    font-size: clamp(58px, 8vw, 126px);
+    font-weight: 620;
+    line-height: .86;
+    letter-spacing: -.072em;
+  }
+
+  h1 span {
+    color: #9b9c96;
+    font-weight: 500;
+  }
+
+  .catalog-heading p {
+    max-width: 580px;
+    margin: 30px 0 0;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: catalogFadeIn .85s .34s var(--ease) forwards;
+    color: #63645e;
+    font-size: clamp(14px, 1.15vw, 17px);
+    line-height: 1.7;
+  }
+
+  .catalog-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: clamp(16px, 2vw, 28px);
+  }
+
+  @keyframes catalogFadeIn {
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    h1,
+    .catalog-heading p {
+      opacity: 1;
+      transform: none;
+      animation: none;
+    }
+  }
+
+  @media (max-width: 980px) {
+    .catalog-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (max-width: 640px) {
+    .catalog {
+      padding-inline: 16px;
+    }
+
+    .catalog-grid {
+      grid-template-columns: 1fr;
+    }
+
+    h1 {
+      font-size: clamp(52px, 16vw, 78px);
+    }
+  }
+</style>

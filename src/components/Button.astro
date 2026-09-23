@@ -1,0 +1,109 @@
+---
+interface Props {
+  href?: string;
+  variant?: 'primary' | 'secondary' | 'story' | 'capability' | 'finale' | 'notify';
+  icon?: 'right' | 'up';
+  ariaLabel?: string;
+  type?: 'button' | 'submit' | 'reset';
+  disabled?: boolean;
+}
+
+const {
+  href,
+  variant = 'primary',
+  icon,
+  ariaLabel,
+  type = 'button',
+  disabled = false,
+} = Astro.props;
+
+const classes = {
+  primary: ['button', 'primary'],
+  secondary: ['button', 'secondary'],
+  story: ['story-cta'],
+  capability: ['cap-cta'],
+  finale: ['finale-cta'],
+  notify: ['notify-button'],
+}[variant];
+
+const Element = href ? 'a' : 'button';
+const iconSize = variant === 'secondary' || variant === 'finale' ? 15 : 16;
+const strokeWidth = variant === 'secondary' ? 1.4 : 1.3;
+---
+
+<Element
+  href={href}
+  type={href ? undefined : type}
+  disabled={href ? undefined : disabled}
+  class:list={classes}
+  aria-label={ariaLabel}
+>
+  <span><slot /></span>
+
+  {icon === 'right' && (
+    <svg width={iconSize} height={iconSize} viewBox="0 0 16 16" fill="none" aria-hidden="true">
+      <path d="M2 8h11M9 4l4 4-4 4" stroke="currentColor" stroke-width={strokeWidth} />
+    </svg>
+  )}
+
+  {icon === 'up' && (
+    <svg width={iconSize} height={iconSize} viewBox="0 0 16 16" fill="none" aria-hidden="true">
+      <path d="M8 13V3M4 7l4-4 4 4" stroke="currentColor" stroke-width={strokeWidth} />
+    </svg>
+  )}
+</Element>
+
+<style>
+  .notify-button {
+    position: relative;
+    isolation: isolate;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    min-width: 82px;
+    min-height: 38px;
+    padding: 0 16px;
+    overflow: hidden;
+    border: 1px solid var(--ink);
+    border-radius: 999px;
+    color: #fff;
+    background: var(--ink);
+    cursor: pointer;
+    font: 600 9px "JetBrains Mono", monospace;
+    letter-spacing: .1em;
+    line-height: 1;
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: color .35s var(--ease), border-color .35s var(--ease), transform .35s var(--ease), box-shadow .35s var(--ease);
+  }
+
+  .notify-button::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    border-radius: inherit;
+    background: #d9d9d3;
+    transform: translateY(105%);
+    transition: transform .45s var(--ease);
+  }
+
+  .notify-button:hover,
+  .notify-button:focus-visible {
+    color: var(--ink);
+    border-color: rgba(9, 9, 9, .34);
+    transform: translateY(-3px);
+    box-shadow: 0 12px 30px rgba(9, 9, 9, .12);
+  }
+
+  .notify-button:hover::before,
+  .notify-button:focus-visible::before {
+    transform: none;
+  }
+
+  .notify-button:disabled {
+    cursor: not-allowed;
+    opacity: .5;
+  }
+</style>

@@ -1,0 +1,807 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Button from '../components/Button.astro';
+
+const gallery = [
+  {
+    src: '/assets/images/catalog/6061-pearl.png',
+    alt: 'Caneta ArtTools 6061 Pearl em vista de estúdio',
+  },
+  {
+    src: '/assets/images/catalog/signature-blanc.png',
+    alt: 'Caneta ArtTools Signature Blanc em vista de estúdio',
+  },
+  {
+    src: '/assets/images/catalog/palladium-line.png',
+    alt: 'Caneta ArtTools Palladium Line em vista de estúdio',
+  },
+  {
+    src: '/assets/images/catalog/obsidian-no-01.png',
+    alt: 'Caneta ArtTools Obsidian em vista de estúdio',
+  },
+];
+
+const specs = [
+  ['Corpo', 'Alumínio 6061-T6'],
+  ['Ponta', 'Precisão 0,5 mm'],
+  ['Peso', '20 g'],
+];
+
+const finishes = [
+  ['6061 Pearl', 'Acetinado'],
+  ['Palladium Line', 'Escovado'],
+  ['Obsidian No. 01', 'Fosco'],
+];
+---
+
+<Layout
+  title="6061 Pearl | ARTOOLS"
+  description="Detalhes da caneta ArtTools 6061 Pearl."
+>
+  <main class="product-page">
+    <div class="product-shell">
+      <nav class="breadcrumb" aria-label="Navegação estrutural">
+        <a href="/">Início</a>
+        <span>/</span>
+        <a href="/pagina-2">Catálogo</a>
+        <span>/</span>
+        <strong>6061 Pearl</strong>
+      </nav>
+
+      <section class="product-layout" aria-labelledby="product-title">
+        <div class="gallery">
+          <figure class="main-image">
+            <span class="release-label">Novo lançamento</span>
+            <span class="edition-label">01 / Pearl</span>
+            <img
+              id="main-product-image"
+              src={gallery[0].src}
+              alt={gallery[0].alt}
+              width="1536"
+              height="1152"
+            />
+          </figure>
+
+          <div class="thumbnails" aria-label="Outras vistas e acabamentos">
+            {gallery.map((image, index) => (
+              <button
+                class:list={['thumbnail', { active: index === 0 }]}
+                type="button"
+                data-image={image.src}
+                data-alt={image.alt}
+                aria-label={`Exibir imagem ${index + 1}`}
+                aria-pressed={index === 0 ? 'true' : 'false'}
+              >
+                <img src={image.src} alt="" width="1536" height="1152" loading="lazy" />
+              </button>
+            ))}
+          </div>
+        </div>
+
+        <div class="product-details">
+          <span class="product-kicker">Precisão & engenharia</span>
+          <h1 id="product-title">6061 Pearl</h1>
+          <p class="summary">
+            Alumínio aeroespacial com acabamento acetinado e equilíbrio central.
+            Um instrumento preciso para escrever, desenhar e registrar ideias.
+          </p>
+
+          <div class="price-row">
+            <div>
+              <span>Preço estimado</span>
+              <strong>R$ 1.290,00</strong>
+            </div>
+            <span class="future-lot">Lote futuro</span>
+          </div>
+
+          <section class="quick-specs" aria-labelledby="specs-title">
+            <h2 id="specs-title">Especificações rápidas</h2>
+            <dl>
+              {specs.map(([label, value]) => (
+                <div>
+                  <dt>{label}</dt>
+                  <dd>{value}</dd>
+                </div>
+              ))}
+            </dl>
+          </section>
+
+          <fieldset class="finishes">
+            <legend>Selecione o modelo</legend>
+            <div class="finish-options">
+              {finishes.map(([name, finish], index) => (
+                <label class:list={{ selected: index === 0 }}>
+                  <input type="radio" name="finish" value={name} checked={index === 0} />
+                  <strong>{name}</strong>
+                  <span>{finish}</span>
+                </label>
+              ))}
+            </div>
+          </fieldset>
+
+          <div class="notify-trigger" id="notify-trigger">
+            <Button variant="notify" ariaLabel="Abrir formulário para receber aviso sobre a 6061 Pearl">
+              Avise-me
+            </Button>
+          </div>
+          <p class="notify-note">Cadastre-se para ser avisado quando este lote estiver disponível.</p>
+        </div>
+      </section>
+
+      <section class="technical-note" aria-labelledby="technical-title">
+        <span>Engenharia de precisão</span>
+        <h2 id="technical-title">Especificações técnicas.</h2>
+        <p>
+          Cada componente foi reduzido ao essencial para oferecer controle,
+          estabilidade e uma presença discreta sobre a mesa.
+        </p>
+      </section>
+    </div>
+  </main>
+
+  <dialog class="notify-dialog" id="notify-dialog" aria-labelledby="notify-title">
+    <div class="dialog-panel">
+      <button class="dialog-close" type="button" aria-label="Fechar formulário">×</button>
+
+      <div class="form-content">
+        <span class="dialog-kicker">Lista de interesse · 6061 Pearl</span>
+        <h2 id="notify-title">Receba o aviso.</h2>
+        <p>Informe seus dados e avisaremos quando a próxima edição estiver disponível.</p>
+
+        <form id="notify-form">
+          <label>
+            <span>Nome</span>
+            <input type="text" name="name" autocomplete="name" placeholder="Seu nome" required />
+          </label>
+          <label>
+            <span>E-mail</span>
+            <input type="email" name="email" autocomplete="email" placeholder="voce@email.com" required />
+          </label>
+          <label>
+            <span>Telefone</span>
+            <input
+              type="tel"
+              name="phone"
+              autocomplete="tel"
+              inputmode="tel"
+              placeholder="(00) 00000-0000"
+              required
+            />
+          </label>
+          <label class="consent">
+            <input type="checkbox" name="consent" required />
+            <span>Concordo em receber novidades sobre este produto.</span>
+          </label>
+          <button class="submit-button" type="submit">Quero ser avisado</button>
+        </form>
+      </div>
+
+      <div class="success-message" hidden>
+        <span>Cadastro recebido</span>
+        <h2>Você está na lista.</h2>
+        <p>Enviaremos um aviso assim que a 6061 Pearl estiver disponível.</p>
+        <button class="success-close" type="button">Fechar</button>
+      </div>
+    </div>
+  </dialog>
+</Layout>
+
+<style>
+  .product-page {
+    min-height: 100svh;
+    padding: clamp(104px, 9vw, 126px) clamp(20px, 5vw, 72px) clamp(82px, 9vw, 128px);
+    background: #fafaf8;
+  }
+
+  .product-shell {
+    width: min(100%, 1080px);
+    margin-inline: auto;
+  }
+
+  .breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    margin-bottom: 25px;
+    color: #969790;
+    font: 500 8px "JetBrains Mono", monospace;
+    letter-spacing: .13em;
+    text-transform: uppercase;
+  }
+
+  .breadcrumb a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .breadcrumb strong {
+    color: var(--ink);
+    font-weight: 600;
+  }
+
+  .product-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1.36fr) minmax(340px, .9fr);
+    gap: clamp(34px, 4.5vw, 58px);
+    align-items: start;
+  }
+
+  .main-image {
+    position: relative;
+    aspect-ratio: 4 / 3;
+    margin: 0;
+    overflow: hidden;
+    background: #111;
+  }
+
+  .main-image img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    transform: scale(.91);
+    transition: opacity .25s ease, transform .7s var(--ease);
+  }
+
+  .main-image:hover img {
+    transform: scale(.935);
+  }
+
+  .release-label,
+  .edition-label {
+    position: absolute;
+    z-index: 2;
+    top: 17px;
+    padding: 6px 8px;
+    color: rgba(255, 255, 255, .76);
+    border: 1px solid rgba(255, 255, 255, .2);
+    background: rgba(0, 0, 0, .25);
+    font: 500 7px "JetBrains Mono", monospace;
+    letter-spacing: .13em;
+    text-transform: uppercase;
+  }
+
+  .release-label {
+    left: 17px;
+  }
+
+  .edition-label {
+    right: 17px;
+  }
+
+  .thumbnails {
+    display: flex;
+    gap: 9px;
+    margin-top: 9px;
+  }
+
+  .thumbnail {
+    width: 58px;
+    aspect-ratio: 1;
+    padding: 0;
+    overflow: hidden;
+    border: 1px solid transparent;
+    background: #e8e8e3;
+    cursor: pointer;
+    transition: border-color .25s ease, opacity .25s ease;
+  }
+
+  .thumbnail img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .thumbnail:hover,
+  .thumbnail.active {
+    border-color: var(--ink);
+  }
+
+  .thumbnail:not(.active) {
+    opacity: .7;
+  }
+
+  .product-details {
+    padding-top: 2px;
+    opacity: 0;
+    transform: translateY(18px);
+    animation: detailsIn .8s .12s var(--ease) forwards;
+  }
+
+  .product-kicker,
+  .quick-specs h2,
+  .finishes legend {
+    color: #888982;
+    font: 500 8px "JetBrains Mono", monospace;
+    letter-spacing: .13em;
+    text-transform: uppercase;
+  }
+
+  .product-kicker {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 11px;
+  }
+
+  .product-kicker::before {
+    content: "";
+    width: 6px;
+    height: 6px;
+    border: 1px solid currentColor;
+    border-radius: 50%;
+  }
+
+  h1 {
+    margin: 0;
+    color: var(--ink);
+    font-family: "Inter Tight", Inter, sans-serif;
+    font-size: clamp(30px, 3vw, 42px);
+    font-weight: 600;
+    line-height: 1;
+    letter-spacing: -.06em;
+  }
+
+  .summary {
+    max-width: 490px;
+    margin: 11px 0 20px;
+    color: #70716b;
+    font-size: 11px;
+    line-height: 1.68;
+  }
+
+  .price-row {
+    display: flex;
+    align-items: end;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 16px 0;
+    border-top: 1px solid rgba(9, 9, 9, .11);
+  }
+
+  .price-row > div {
+    display: grid;
+    gap: 5px;
+  }
+
+  .price-row > div span,
+  .future-lot {
+    color: #969790;
+    font: 500 7px "JetBrains Mono", monospace;
+    letter-spacing: .13em;
+    text-transform: uppercase;
+  }
+
+  .price-row strong {
+    font-family: "Inter Tight", Inter, sans-serif;
+    font-size: 20px;
+    font-weight: 500;
+    letter-spacing: -.035em;
+  }
+
+  .future-lot {
+    padding: 7px 8px;
+    border: 1px solid rgba(9, 9, 9, .11);
+  }
+
+  .quick-specs {
+    padding: 15px;
+    background: #eeeeea;
+  }
+
+  .quick-specs h2 {
+    margin: 0 0 14px;
+  }
+
+  .quick-specs dl {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+    margin: 0;
+  }
+
+  .quick-specs dl > div {
+    display: grid;
+    gap: 5px;
+  }
+
+  dt,
+  dd {
+    margin: 0;
+  }
+
+  dt {
+    color: #979891;
+    font: 500 7px "JetBrains Mono", monospace;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+  }
+
+  dd {
+    font-size: 10px;
+    line-height: 1.35;
+  }
+
+  .finishes {
+    min-width: 0;
+    margin: 18px 0 15px;
+    padding: 0;
+    border: 0;
+  }
+
+  .finishes legend {
+    margin-bottom: 10px;
+  }
+
+  .finish-options {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 6px;
+  }
+
+  .finish-options label {
+    min-width: 0;
+    padding: 10px;
+    border: 1px solid rgba(9, 9, 9, .12);
+    cursor: pointer;
+    transition: color .25s ease, background .25s ease, border-color .25s ease;
+  }
+
+  .finish-options label.selected {
+    color: #fff;
+    border-color: var(--ink);
+    background: var(--ink);
+  }
+
+  .finish-options input {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .finish-options strong,
+  .finish-options span {
+    display: block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .finish-options strong {
+    font-size: 8px;
+    font-weight: 600;
+  }
+
+  .finish-options span {
+    margin-top: 4px;
+    color: #8c8d86;
+    font: 500 7px "JetBrains Mono", monospace;
+  }
+
+  .selected span {
+    color: #aaa;
+  }
+
+  .notify-trigger :global(.notify-button) {
+    width: 100%;
+    min-height: 45px;
+    border-radius: 2px;
+  }
+
+  .notify-note {
+    margin: 9px 0 0;
+    color: #a1a29b;
+    font: 500 7px "JetBrains Mono", monospace;
+    letter-spacing: .04em;
+    text-align: center;
+  }
+
+  .technical-note {
+    max-width: 610px;
+    margin: clamp(86px, 10vw, 130px) 0 0;
+    padding-top: 24px;
+    border-top: 1px solid rgba(9, 9, 9, .14);
+  }
+
+  .technical-note > span {
+    color: #969790;
+    font: 500 8px "JetBrains Mono", monospace;
+    letter-spacing: .13em;
+    text-transform: uppercase;
+  }
+
+  .technical-note h2 {
+    margin: 16px 0 12px;
+    font-family: "Inter Tight", Inter, sans-serif;
+    font-size: clamp(30px, 3.6vw, 48px);
+    font-weight: 600;
+    line-height: .95;
+    letter-spacing: -.055em;
+  }
+
+  .technical-note p {
+    max-width: 510px;
+    margin: 0;
+    color: #73746e;
+    font-size: 12px;
+    line-height: 1.7;
+  }
+
+  .notify-dialog {
+    width: min(calc(100% - 32px), 520px);
+    padding: 0;
+    border: 0;
+    color: var(--ink);
+    background: transparent;
+  }
+
+  .notify-dialog::backdrop {
+    background: rgba(9, 9, 9, .7);
+    backdrop-filter: blur(5px);
+  }
+
+  .notify-dialog[open] {
+    animation: dialogIn .45s var(--ease) both;
+  }
+
+  .dialog-panel {
+    position: relative;
+    padding: clamp(30px, 5vw, 52px);
+    background: #f7f7f3;
+    box-shadow: 0 30px 90px rgba(0, 0, 0, .28);
+  }
+
+  .dialog-close {
+    position: absolute;
+    top: 15px;
+    right: 17px;
+    width: 32px;
+    height: 32px;
+    padding: 0;
+    border: 0;
+    color: #74756f;
+    background: transparent;
+    cursor: pointer;
+    font: 300 25px/1 Inter, sans-serif;
+  }
+
+  .dialog-kicker,
+  .success-message > span {
+    color: #878881;
+    font: 500 8px "JetBrains Mono", monospace;
+    letter-spacing: .13em;
+    text-transform: uppercase;
+  }
+
+  .form-content h2,
+  .success-message h2 {
+    margin: 18px 0 12px;
+    font-family: "Inter Tight", Inter, sans-serif;
+    font-size: clamp(43px, 7vw, 62px);
+    font-weight: 600;
+    line-height: .9;
+    letter-spacing: -.06em;
+  }
+
+  .form-content > p,
+  .success-message p {
+    margin: 0 0 29px;
+    color: #73746e;
+    font-size: 12px;
+    line-height: 1.65;
+  }
+
+  #notify-form {
+    display: grid;
+    gap: 17px;
+  }
+
+  #notify-form > label:not(.consent) {
+    display: grid;
+    gap: 8px;
+  }
+
+  #notify-form label > span {
+    color: #7b7c75;
+    font: 500 8px "JetBrains Mono", monospace;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+  }
+
+  #notify-form input[type="text"],
+  #notify-form input[type="email"],
+  #notify-form input[type="tel"] {
+    width: 100%;
+    height: 48px;
+    padding: 0 13px;
+    border: 1px solid rgba(9, 9, 9, .16);
+    border-radius: 0;
+    color: var(--ink);
+    background: transparent;
+    font: 400 13px Inter, sans-serif;
+    outline: 0;
+    transition: border-color .25s ease;
+  }
+
+  #notify-form input:focus {
+    border-color: var(--ink);
+  }
+
+  .consent {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .consent input {
+    margin: 1px 0 0;
+    accent-color: var(--ink);
+  }
+
+  .consent span {
+    line-height: 1.5;
+  }
+
+  .submit-button,
+  .success-close {
+    min-height: 50px;
+    border: 1px solid var(--ink);
+    color: #fff;
+    background: var(--ink);
+    cursor: pointer;
+    font: 600 9px "JetBrains Mono", monospace;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    transition: color .3s ease, background .3s ease;
+  }
+
+  .submit-button:hover,
+  .success-close:hover {
+    color: var(--ink);
+    background: #d9d9d3;
+  }
+
+  .success-message {
+    padding-block: 24px;
+  }
+
+  .success-close {
+    width: 100%;
+  }
+
+  @keyframes detailsIn {
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  @keyframes dialogIn {
+    from {
+      opacity: 0;
+      transform: translateY(18px) scale(.98);
+    }
+  }
+
+  @media (max-width: 900px) {
+    .product-layout {
+      grid-template-columns: 1fr;
+    }
+
+    .product-details {
+      max-width: 660px;
+    }
+  }
+
+  @media (max-width: 560px) {
+    .product-page {
+      padding-inline: 16px;
+    }
+
+    .breadcrumb {
+      overflow: hidden;
+      white-space: nowrap;
+    }
+
+    .thumbnails {
+      gap: 6px;
+    }
+
+    .thumbnail {
+      width: 58px;
+    }
+
+    .quick-specs dl,
+    .finish-options {
+      grid-template-columns: 1fr;
+    }
+
+    .finish-options label {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .finish-options span {
+      margin: 0;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .product-details,
+    .notify-dialog[open] {
+      opacity: 1;
+      transform: none;
+      animation: none;
+    }
+  }
+</style>
+
+<script>
+  const mainImage = document.querySelector<HTMLImageElement>('#main-product-image');
+  const thumbnails = document.querySelectorAll<HTMLButtonElement>('.thumbnail');
+
+  thumbnails.forEach((thumbnail) => {
+    thumbnail.addEventListener('click', () => {
+      if (!mainImage) return;
+      const source = thumbnail.dataset.image;
+      const alt = thumbnail.dataset.alt;
+      if (!source) return;
+
+      mainImage.style.opacity = '0';
+      window.setTimeout(() => {
+        mainImage.src = source;
+        if (alt) mainImage.alt = alt;
+        mainImage.style.opacity = '1';
+      }, 180);
+
+      thumbnails.forEach((item) => {
+        item.classList.remove('active');
+        item.setAttribute('aria-pressed', 'false');
+      });
+      thumbnail.classList.add('active');
+      thumbnail.setAttribute('aria-pressed', 'true');
+    });
+  });
+
+  const finishLabels = document.querySelectorAll<HTMLLabelElement>('.finish-options label');
+  finishLabels.forEach((label) => {
+    label.addEventListener('click', () => {
+      finishLabels.forEach((item) => item.classList.remove('selected'));
+      label.classList.add('selected');
+    });
+  });
+
+  const dialog = document.querySelector<HTMLDialogElement>('#notify-dialog');
+  const trigger = document.querySelector<HTMLButtonElement>('#notify-trigger button');
+  const closeButton = document.querySelector<HTMLButtonElement>('.dialog-close');
+  const successClose = document.querySelector<HTMLButtonElement>('.success-close');
+  const form = document.querySelector<HTMLFormElement>('#notify-form');
+  const formContent = document.querySelector<HTMLElement>('.form-content');
+  const successMessage = document.querySelector<HTMLElement>('.success-message');
+
+  const closeDialog = () => dialog?.close();
+  trigger?.addEventListener('click', () => dialog?.showModal());
+  closeButton?.addEventListener('click', closeDialog);
+  successClose?.addEventListener('click', closeDialog);
+
+  dialog?.addEventListener('click', (event) => {
+    if (event.target === dialog) closeDialog();
+  });
+
+  form?.addEventListener('submit', (event) => {
+    event.preventDefault();
+    if (!form.reportValidity()) return;
+    if (formContent) formContent.hidden = true;
+    if (successMessage) successMessage.hidden = false;
+  });
+
+  dialog?.addEventListener('close', () => {
+    window.setTimeout(() => {
+      form?.reset();
+      if (formContent) formContent.hidden = false;
+      if (successMessage) successMessage.hidden = true;
+    }, 200);
+  });
+</script>

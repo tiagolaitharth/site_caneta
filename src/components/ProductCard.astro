@@ -1,0 +1,195 @@
+---
+import Button from './Button.astro';
+
+interface Props {
+  index: number;
+  name: string;
+  detail: string;
+  specification: string;
+  image: string;
+  accentColor: string;
+}
+
+const {
+  index,
+  name,
+  detail,
+  specification,
+  image,
+  accentColor,
+} = Astro.props;
+---
+
+<article class="product-card" style={`--edition-accent:${accentColor};`}>
+  <figure class="product-visual">
+    <img
+      src={image}
+      alt={`Caneta ArtTools ${name} fotografada em estúdio`}
+      loading="lazy"
+      width="1536"
+      height="1152"
+    />
+    <span class="product-index" aria-hidden="true">{String(index).padStart(2, '0')}</span>
+    <span class="availability">Edição especial</span>
+  </figure>
+
+  <div class="product-copy">
+    <span class="collection-mark">ArtTools Precision</span>
+    <h2>{name}</h2>
+    <p>{detail}</p>
+    <div class="product-meta">
+      <span>{specification}</span>
+      <Button href="/pagina-3" variant="notify" ariaLabel={`Ver detalhes e receber aviso sobre ${name}`}>Avise</Button>
+    </div>
+  </div>
+</article>
+
+<style>
+  .product-card {
+    position: relative;
+    min-width: 0;
+    overflow: hidden;
+    border: 1px solid rgba(17, 18, 15, .13);
+    border-radius: 4px;
+    background: #f8f8f4;
+    box-shadow: 0 18px 50px rgba(17, 18, 15, .055);
+    transition: transform .55s var(--ease), border-color .55s ease, box-shadow .55s ease;
+  }
+
+  .product-card:hover {
+    border-color: rgba(17, 18, 15, .28);
+    box-shadow: 0 34px 80px rgba(17, 18, 15, .14);
+    transform: translateY(-8px);
+  }
+
+  .product-visual {
+    position: relative;
+    aspect-ratio: 4 / 3;
+    margin: 0;
+    overflow: hidden;
+    background: #111;
+    border-bottom: 1px solid rgba(17, 18, 15, .12);
+    isolation: isolate;
+  }
+
+  .product-visual::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+    background:
+      linear-gradient(180deg, rgba(0, 0, 0, .14), transparent 30%, transparent 68%, rgba(0, 0, 0, .36)),
+      radial-gradient(circle at 70% 14%, rgba(255, 255, 255, .08), transparent 31%);
+  }
+
+  .product-visual img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: center;
+    filter: contrast(1.02);
+    transform: scale(.91);
+    transition: transform 1s var(--ease), filter 1s ease;
+  }
+
+  .product-card:hover .product-visual img {
+    filter: contrast(1.06);
+    transform: scale(.95);
+  }
+
+  .product-index,
+  .availability {
+    position: absolute;
+    z-index: 2;
+    color: rgba(255, 255, 255, .76);
+    font: 600 8px "JetBrains Mono", monospace;
+    letter-spacing: .15em;
+    text-transform: uppercase;
+  }
+
+  .product-index {
+    top: 20px;
+    left: 20px;
+  }
+
+  .availability {
+    right: 18px;
+    bottom: 17px;
+    padding: 7px 9px;
+    border: 1px solid rgba(255, 255, 255, .2);
+    border-radius: 999px;
+    background: rgba(0, 0, 0, .32);
+    backdrop-filter: blur(8px);
+  }
+
+  .product-copy {
+    position: relative;
+    padding: 26px 24px 22px;
+  }
+
+  .product-copy::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 24px;
+    width: 54px;
+    height: 2px;
+    background: var(--edition-accent);
+  }
+
+  .collection-mark {
+    display: block;
+    margin-bottom: 15px;
+    color: #898a84;
+    font: 600 8px "JetBrains Mono", monospace;
+    letter-spacing: .15em;
+    text-transform: uppercase;
+  }
+
+  h2 {
+    margin: 0;
+    color: var(--ink);
+    font-family: "Inter Tight", Inter, sans-serif;
+    font-size: clamp(27px, 2.35vw, 37px);
+    font-weight: 600;
+    line-height: .96;
+    letter-spacing: -.048em;
+  }
+
+  p {
+    min-height: 46px;
+    margin: 13px 0 25px;
+    color: #686963;
+    font-size: 13px;
+    line-height: 1.65;
+  }
+
+  .product-meta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding-top: 17px;
+    border-top: 1px solid rgba(17, 18, 15, .11);
+  }
+
+  .product-meta > span {
+    color: #73746e;
+    font: 500 9px "JetBrains Mono", monospace;
+    letter-spacing: .09em;
+    text-transform: uppercase;
+  }
+
+  @media (max-width: 680px) {
+    .product-copy {
+      padding: 24px 20px 20px;
+    }
+
+    .product-copy::before {
+      left: 20px;
+    }
+  }
+</style>
