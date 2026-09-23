@@ -38,6 +38,16 @@ Neste projeto, desenvolvi:
 - A organização dos assets, rotas e conteúdo do projeto;
 - A publicação do site na Vercel.
 
+## Projeto em números
+
+| Entrega | Resultado |
+| --- | --- |
+| Páginas publicadas | 3 |
+| Produtos no catálogo | 9 |
+| Componentes principais reutilizáveis | 7 |
+| Layout compartilhado | 1 |
+| Ambientes disponíveis | Desenvolvimento e produção |
+
 ## Funcionalidades
 
 ### Página inicial
@@ -99,13 +109,16 @@ src/
 
 O `Layout.astro` concentra a estrutura comum do documento. O cabeçalho e o rodapé são compartilhados entre as páginas, enquanto cards e botões recebem conteúdo por propriedades para reduzir repetição de marcação.
 
-## Decisões técnicas
+## Desafios e soluções
 
-- **Componentização:** elementos repetidos foram isolados para facilitar manutenção e reutilização;
-- **Geração estática:** o Astro gera páginas que podem ser publicadas diretamente na Vercel;
-- **JavaScript direcionado:** os scripts são usados nas interações que precisam de comportamento no navegador;
-- **Responsividade:** os layouts se reorganizam para desktop, tablet e celular;
-- **Acessibilidade:** foram utilizados HTML semântico, textos alternativos, labels, foco visível, atributos ARIA e suporte a `prefers-reduced-motion`.
+| Desafio | Solução aplicada |
+| --- | --- |
+| Sincronizar vídeo e rolagem sem bloquear a interface | Atualização dos quadros com `requestAnimationFrame` e controle progressivo do tempo do vídeo |
+| Manter o mesmo padrão visual nas três páginas | Criação de `Layout`, cabeçalho, rodapé e botões compartilhados |
+| Evitar repetição nos nove produtos do catálogo | Componente `ProductCard.astro` alimentado por uma lista de dados |
+| Exibir produtos completos em diferentes telas | Grid responsivo, proporção controlada e imagens com `object-fit` adequado |
+| Indicar a página atual no cabeçalho | Leitura da rota com `Astro.url.pathname` e aplicação automática do estado ativo |
+| Oferecer animações com mais acessibilidade | Alternativa para usuários com `prefers-reduced-motion` e foco visível nos controles |
 
 ## Competências praticadas
 
