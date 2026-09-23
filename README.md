@@ -21,22 +21,28 @@ Projeto de estudo desenvolvido em **Astro** para apresentar uma caneta de precis
 
 ARTOOLS é um site fictício de apresentação e catálogo de canetas premium. O projeto começou como um exercício de landing page e evoluiu para uma experiência completa com três páginas conectadas, componentes reutilizáveis e interações desenvolvidas no front-end.
 
-Sou estudante iniciante em **Desenvolvimento de Sistemas** e construí este projeto para aplicar conhecimentos de estruturação de páginas, responsividade, componentização, manipulação do DOM e organização de código.
+Sou estudante iniciante do curso de **Análise e Desenvolvimento de Sistemas** e conduzi este projeto para praticar a transformação de uma ideia em uma experiência publicada, usando IA como principal ferramenta de apoio durante o desenvolvimento.
 
-## Minha contribuição
+## Uso de inteligência artificial
 
-Neste projeto, desenvolvi:
+Este projeto foi desenvolvido **quase integralmente com assistência de IA generativa**, principalmente por meio do OpenAI Codex. A IA apoiou a geração e refatoração do código, a criação dos estilos, a componentização, a depuração, a documentação e a produção das imagens do catálogo.
 
-- A estrutura completa das três páginas em Astro;
-- O sistema visual e os layouts responsivos;
-- Componentes compartilhados de cabeçalho, rodapé, botões, cards e ficha técnica;
-- A navegação global com indicação automática da página atual;
-- As animações de entrada, rolagem e interação com o ponteiro;
-- O catálogo com nove modelos de caneta;
-- A galeria e a seleção visual de acabamento na página de produto;
-- O modal “Avise-me” com nome, e-mail, telefone e validação de campos;
-- A organização dos assets, rotas e conteúdo do projeto;
-- A publicação do site na Vercel.
+Não apresento este repositório como código escrito integralmente à mão. Ele registra um processo de aprendizado assistido, no qual pratiquei como definir requisitos, analisar resultados, solicitar correções, validar funcionalidades e acompanhar um projeto até a publicação.
+
+## Meu papel no processo
+
+Minha participação concentrou-se em:
+
+- Definir o objetivo, o conteúdo e as funcionalidades do site;
+- Selecionar referências visuais e orientar o padrão de design;
+- Dividir o projeto em página inicial, catálogo e detalhes do produto;
+- Avaliar cada versão e identificar problemas de layout, navegação e usabilidade;
+- Solicitar ajustes incrementais e comparar os resultados com as referências;
+- Validar as páginas no navegador e acompanhar builds do Astro;
+- Organizar a apresentação profissional do repositório;
+- Versionar o resultado no GitHub e acompanhar a publicação na Vercel.
+
+Como parte do estudo, meu objetivo é compreender e conseguir explicar os principais componentes, estilos, scripts e decisões presentes no projeto, mesmo quando a primeira implementação foi sugerida pela IA.
 
 ## Projeto em números
 
@@ -86,6 +92,7 @@ Neste projeto, desenvolvi:
 | **Node.js e npm** | Ambiente de desenvolvimento e gerenciamento de dependências |
 | **Git e GitHub** | Versionamento e publicação do código-fonte |
 | **Vercel** | Build e hospedagem da versão pública |
+| **OpenAI Codex** | Apoio intensivo na geração, revisão, depuração e documentação do projeto |
 
 ## Organização do código
 
@@ -130,7 +137,9 @@ O `Layout.astro` concentra a estrutura comum do documento. O cabeçalho e o roda
 - Animações e microinterações;
 - Navegação entre páginas;
 - Controle de versão com Git;
-- Deploy contínuo com GitHub e Vercel.
+- Deploy contínuo com GitHub e Vercel;
+- Definição de requisitos e condução iterativa com IA generativa;
+- Avaliação crítica e refinamento de resultados produzidos por IA.
 
 ## Status e limitações
 
@@ -149,6 +158,6 @@ O formulário “Avise-me” representa o fluxo de interface e realiza validaç�
 
 ## Sobre mim
 
-Sou estudante de Desenvolvimento de Sistemas em início de carreira. Utilizo projetos práticos para transformar o conteúdo estudado em experiências funcionais e fortalecer meus conhecimentos em desenvolvimento web.
+Sou estudante do curso de **Análise e Desenvolvimento de Sistemas**, em início de carreira. Utilizo projetos práticos e ferramentas de IA para transformar o conteúdo estudado em experiências funcionais e fortalecer meus conhecimentos em desenvolvimento web.
 
-Este projeto demonstra minha evolução em front-end, minha atenção à organização do código e minha capacidade de desenvolver uma interface completa a partir de uma proposta visual.
+Este projeto demonstra minha capacidade de conduzir uma ideia até uma versão publicada, aprender por meio de iterações e usar IA com transparência. Também indica os pontos técnicos que continuo estudando para ampliar minha autonomia no desenvolvimento.
