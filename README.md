@@ -8,6 +8,8 @@ Projeto de estudo desenvolvido em **Astro** para apresentar uma caneta de precis
 ![HTML5](https://img.shields.io/badge/HTML5-semântico-E34F26?style=flat-square&logo=html5&logoColor=white)
 ![CSS3](https://img.shields.io/badge/CSS3-responsivo-1572B6?style=flat-square&logo=css3&logoColor=white)
 ![JavaScript](https://img.shields.io/badge/JavaScript-interações-F7DF1E?style=flat-square&logo=javascript&logoColor=111)
+![Git](https://img.shields.io/badge/Git-versionamento-F05032?style=flat-square&logo=git&logoColor=white)
+![GitHub](https://img.shields.io/badge/GitHub-repositório-181717?style=flat-square&logo=github&logoColor=white)
 
 ### [Acessar demonstração na Vercel →](https://site-caneta-chi.vercel.app)
 
@@ -15,7 +17,7 @@ Projeto de estudo desenvolvido em **Astro** para apresentar uma caneta de precis
 
 </div>
 
-![Caneta ARTOOLS fotografada em estúdio](public/assets/images/artools-pen-studio.png)
+![Caneta ARTOOLS fotografada em estúdio](src/assets/images/artools-pen-studio.png)
 
 ## Visão geral
 
@@ -40,7 +42,8 @@ Minha participação concentrou-se em:
 - Solicitar ajustes incrementais e comparar os resultados com as referências;
 - Validar as páginas no navegador e acompanhar builds do Astro;
 - Organizar a apresentação profissional do repositório;
-- Versionar o resultado no GitHub e acompanhar a publicação na Vercel.
+- Acompanhar alterações, commits e versões publicadas no GitHub;
+- Verificar a publicação automática do projeto na Vercel após cada atualização.
 
 Como parte do estudo, meu objetivo é compreender e conseguir explicar os principais componentes, estilos, scripts e decisões presentes no projeto, mesmo quando a primeira implementação foi sugerida pela IA.
 
@@ -94,6 +97,24 @@ Como parte do estudo, meu objetivo é compreender e conseguir explicar os princi
 | **Vercel** | Build e hospedagem da versão pública |
 | **OpenAI Codex** | Apoio intensivo na geração, revisão, depuração e documentação do projeto |
 
+## Prática com Git e GitHub
+
+Este repositório também foi utilizado para praticar um fluxo básico de versionamento durante a evolução do projeto. Em vez de manter apenas uma entrega final, as mudanças foram registradas conforme novas páginas, componentes, correções responsivas e otimizações foram concluídas.
+
+Práticas exercitadas neste projeto:
+
+- Manutenção do código-fonte em um repositório remoto no GitHub;
+- Organização das alterações em commits incrementais;
+- Uso de mensagens de commit curtas e relacionadas ao que foi modificado;
+- Consulta do histórico para acompanhar a evolução do site;
+- Sincronização da branch principal com a versão publicada;
+- Integração entre GitHub e Vercel para novos deploys após atualizações;
+- Verificação do build e da versão pública antes de considerar uma alteração concluída.
+
+Como estudante, ainda estou desenvolvendo autonomia com Git. Este projeto registra uma experiência prática com conceitos de repositório, histórico, commit, branch principal e publicação contínua, conduzida com apoio do OpenAI Codex.
+
+[Consultar o histórico de commits →](https://github.com/tiagolaitharth/site_caneta/commits/main/)
+
 ## Organização do código
 
 ```text
@@ -126,6 +147,7 @@ O `Layout.astro` concentra a estrutura comum do documento. O cabeçalho e o roda
 | Exibir produtos completos em diferentes telas | Grid responsivo, proporção controlada e imagens com `object-fit` adequado |
 | Indicar a página atual no cabeçalho | Leitura da rota com `Astro.url.pathname` e aplicação automática do estado ativo |
 | Oferecer animações com mais acessibilidade | Alternativa para usuários com `prefers-reduced-motion` e foco visível nos controles |
+| Melhorar o carregamento em celulares | MP4 preparado para reprodução progressiva e imagens processadas com `astro:assets` |
 
 ## Competências praticadas
 
@@ -136,8 +158,10 @@ O `Layout.astro` concentra a estrutura comum do documento. O cabeçalho e o roda
 - Manipulação do DOM;
 - Animações e microinterações;
 - Navegação entre páginas;
-- Controle de versão com Git;
-- Deploy contínuo com GitHub e Vercel;
+- Versionamento de código com Git e GitHub;
+- Organização de mudanças em commits descritivos e incrementais;
+- Acompanhamento da branch principal e do histórico do projeto;
+- Deploy contínuo com integração entre GitHub e Vercel;
 - Definição de requisitos e condução iterativa com IA generativa;
 - Avaliação crítica e refinamento de resultados produzidos por IA.
 
@@ -152,7 +176,7 @@ O formulário “Avise-me” representa o fluxo de interface e realiza validaç�
 - Integrar o formulário a uma API e banco de dados;
 - Criar uma rota de detalhes individual para cada produto;
 - Adicionar máscara e validação aprimorada ao telefone;
-- Otimizar as imagens e as métricas de carregamento;
+- Medir e acompanhar as métricas de carregamento com Lighthouse;
 - Adicionar testes de interface e acessibilidade;
 - Implementar monitoramento de desempenho e navegação.
 
