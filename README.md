@@ -13,7 +13,7 @@ Projeto de estudo desenvolvido em **Astro** para apresentar uma caneta de precis
 
 ### [Acessar demonstração na Vercel →](https://site-caneta-chi.vercel.app)
 
-[Início](https://site-caneta-chi.vercel.app) · [Catálogo](https://site-caneta-chi.vercel.app/pagina-2) · [Detalhes do produto](https://site-caneta-chi.vercel.app/pagina-3)
+[Início](https://site-caneta-chi.vercel.app/) · [Catálogo](https://site-caneta-chi.vercel.app/catalogo/) · [Detalhes do produto](https://site-caneta-chi.vercel.app/produtos/6061-pearl/)
 
 </div>
 
@@ -21,7 +21,7 @@ Projeto de estudo desenvolvido em **Astro** para apresentar uma caneta de precis
 
 ## Visão geral
 
-ARTOOLS é um site fictício de apresentação e catálogo de canetas premium. O projeto começou como um exercício de landing page e evoluiu para uma experiência completa com três páginas conectadas, componentes reutilizáveis e interações desenvolvidas no front-end.
+ARTOOLS é um site fictício de apresentação e catálogo de canetas premium. O projeto começou como um exercício de landing page e evoluiu para uma experiência completa com página inicial, catálogo e rotas individuais para nove produtos, além de componentes reutilizáveis e interações desenvolvidas no front-end.
 
 Sou estudante iniciante do curso de **Análise e Desenvolvimento de Sistemas** e conduzi este projeto para praticar a transformação de uma ideia em uma experiência publicada, usando IA como principal ferramenta de apoio durante o desenvolvimento.
 
@@ -51,7 +51,7 @@ Como parte do estudo, meu objetivo é compreender e conseguir explicar os princi
 
 | Entrega | Resultado |
 | --- | --- |
-| Páginas publicadas | 3 |
+| Rotas de conteúdo publicadas | 11 |
 | Produtos no catálogo | 9 |
 | Componentes principais reutilizáveis | 7 |
 | Layout compartilhado | 1 |
@@ -73,9 +73,9 @@ Como parte do estudo, meu objetivo é compreender e conseguir explicar os princi
 - Grade responsiva com nove produtos;
 - Cards gerados por um componente reutilizável;
 - Imagem, nome, descrição e especificação de cada modelo;
-- Botões que direcionam para a página de detalhes.
+- Botões que direcionam para a rota individual de cada produto.
 
-### Detalhes do produto
+### Detalhes dos produtos
 
 - Galeria com miniaturas selecionáveis;
 - Informações de preço, acabamento e especificações;
@@ -129,10 +129,13 @@ src/
 │   └── TechnicalSpecs.astro
 ├── layouts/
 │   └── Layout.astro
+├── data/
+│   └── products.ts
 └── pages/
     ├── index.astro
-    ├── pagina-2.astro
-    └── pagina-3.astro
+    ├── catalogo.astro
+    └── produtos/
+        └── [slug].astro
 ```
 
 O `Layout.astro` concentra a estrutura comum do documento. O cabeçalho e o rodapé são compartilhados entre as páginas, enquanto cards e botões recebem conteúdo por propriedades para reduzir repetição de marcação.
@@ -142,10 +145,10 @@ O `Layout.astro` concentra a estrutura comum do documento. O cabeçalho e o roda
 | Desafio | Solução aplicada |
 | --- | --- |
 | Sincronizar vídeo e rolagem sem bloquear a interface | Atualização dos quadros com `requestAnimationFrame` e controle progressivo do tempo do vídeo |
-| Manter o mesmo padrão visual nas três páginas | Criação de `Layout`, cabeçalho, rodapé e botões compartilhados |
-| Evitar repetição nos nove produtos do catálogo | Componente `ProductCard.astro` alimentado por uma lista de dados |
+| Manter o mesmo padrão visual em todas as rotas | Criação de `Layout`, cabeçalho, rodapé e botões compartilhados |
+| Evitar repetição nos nove produtos do catálogo | Componente `ProductCard.astro` alimentado pela fonte central `products.ts` |
 | Exibir produtos completos em diferentes telas | Grid responsivo, proporção controlada e imagens com `object-fit` adequado |
-| Indicar a página atual no cabeçalho | Leitura da rota com `Astro.url.pathname` e aplicação automática do estado ativo |
+| Organizar URLs legíveis e indicar a seção atual | Rotas semânticas, páginas dinâmicas com `[slug].astro` e estado ativo obtido por `Astro.url.pathname` |
 | Oferecer animações com mais acessibilidade | Alternativa para usuários com `prefers-reduced-motion` e foco visível nos controles |
 | Melhorar o carregamento em celulares | MP4 preparado para reprodução progressiva e imagens processadas com `astro:assets` |
 
@@ -174,7 +177,6 @@ O formulário “Avise-me” representa o fluxo de interface e realiza validaç�
 ## Próximas melhorias
 
 - Integrar o formulário a uma API e banco de dados;
-- Criar uma rota de detalhes individual para cada produto;
 - Adicionar máscara e validação aprimorada ao telefone;
 - Medir e acompanhar as métricas de carregamento com Lighthouse;
 - Adicionar testes de interface e acessibilidade;

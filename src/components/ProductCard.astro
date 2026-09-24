@@ -6,6 +6,7 @@ import type { ImageMetadata } from 'astro';
 interface Props {
   index: number;
   name: string;
+  slug: string;
   detail: string;
   specification: string;
   image: ImageMetadata;
@@ -16,6 +17,7 @@ interface Props {
 const {
   index,
   name,
+  slug,
   detail,
   specification,
   image,
@@ -46,7 +48,7 @@ const {
     <p>{detail}</p>
     <div class="product-meta">
       <span>{specification}</span>
-      <Button href="/pagina-3" variant="notify" ariaLabel={`Ver detalhes e receber aviso sobre ${name}`}>Avise</Button>
+      <Button href={`/produtos/${slug}/`} variant="notify" ariaLabel={`Ver detalhes e receber aviso sobre ${name}`}>Avise</Button>
     </div>
   </div>
 </article>

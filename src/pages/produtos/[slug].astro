@@ -1,91 +1,63 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import Button from '../components/Button.astro';
+import Layout from '../../layouts/Layout.astro';
+import Button from '../../components/Button.astro';
 import { Image, getImage } from 'astro:assets';
-import penPearl from '../assets/images/catalog/6061-pearl.png';
-import penSignature from '../assets/images/catalog/signature-blanc.png';
-import penPalladium from '../assets/images/catalog/palladium-line.png';
-import penObsidian from '../assets/images/catalog/obsidian-no-01.png';
+import { products, type Product } from '../../data/products';
 
-const gallery = [
-  {
-    src: penPearl,
-    alt: 'Caneta ArtTools 6061 Pearl em vista de estúdio',
-  },
-  {
-    src: penSignature,
-    alt: 'Caneta ArtTools Signature Blanc em vista de estúdio',
-  },
-  {
-    src: penPalladium,
-    alt: 'Caneta ArtTools Palladium Line em vista de estúdio',
-  },
-  {
-    src: penObsidian,
-    alt: 'Caneta ArtTools Obsidian em vista de estúdio',
-  },
+export function getStaticPaths() {
+  return products.map((product, index) => ({
+    params: { slug: product.slug },
+    props: { product, index },
+  }));
+}
+
+interface Props { product: Product; index: number; }
+const { product, index } = Astro.props;
+const relatedProducts = [
+  product,
+  products[(index + 1) % products.length],
+  products[(index + 2) % products.length],
+  products[(index + 3) % products.length],
 ];
-
+const gallery = relatedProducts.map((item) => ({
+  src: item.image,
+  alt: `Caneta ArtTools ${item.name} em vista de estúdio`,
+}));
 const galleryOptimized = await Promise.all(gallery.map(async (image) => ({
   ...image,
   displaySrc: (await getImage({ src: image.src, width: 1200, format: 'webp', quality: 82 })).src,
 })));
-
 const specs = [
-  ['Corpo', 'Alumínio 6061-T6'],
-  ['Ponta', 'Precisão 0,5 mm'],
-  ['Peso', '20 g'],
+  ['Corpo', product.material],
+  ['Ponta', product.tip],
+  ['Peso', product.weight],
 ];
-
-const finishes = [
-  ['6061 Pearl', 'Acetinado'],
-  ['Palladium Line', 'Escovado'],
-  ['Obsidian No. 01', 'Fosco'],
-];
+const finishes = relatedProducts.slice(0, 3);
+const editionNumber = String(index + 1).padStart(2, '0');
 ---
 
 <Layout
-  title="6061 Pearl | Detalhes e Lista de Espera | ARTOOLS"
-  description="Conheça a caneta 6061 Pearl, suas especificações e acabamentos. Cadastre-se no Avise-me para receber novidades sobre a disponibilidade."
+  title={`${product.name} | Detalhes e Lista de Espera | ARTOOLS`}
+  description={`Conheça a caneta ${product.name}, suas especificações e acabamento. Cadastre-se no Avise-me para receber novidades sobre a disponibilidade.`}
 >
   <main class="product-page">
     <div class="product-shell">
       <nav class="breadcrumb" aria-label="Navegação estrutural">
-        <a href="/">Início</a>
-        <span>/</span>
-        <a href="/pagina-2">Catálogo</a>
-        <span>/</span>
-        <strong>6061 Pearl</strong>
+        <a href="/">Início</a><span>/</span>
+        <a href="/catalogo/">Catálogo</a><span>/</span>
+        <strong>{product.name}</strong>
       </nav>
 
       <section class="product-layout" aria-labelledby="product-title">
         <div class="gallery">
           <figure class="main-image">
             <span class="release-label">Novo lançamento</span>
-            <span class="edition-label">01 / Pearl</span>
-            <Image
-              id="main-product-image"
-              src={gallery[0].src}
-              alt={gallery[0].alt}
-              width={1200}
-              height={900}
-              format="webp"
-              quality={82}
-              loading="eager"
-              fetchpriority="high"
-            />
+            <span class="edition-label">{editionNumber} / {product.finish}</span>
+            <Image id="main-product-image" src={product.image} alt={gallery[0].alt} width={1200} height={900} format="webp" quality={82} loading="eager" fetchpriority="high" />
           </figure>
-
           <div class="thumbnails" aria-label="Outras vistas e acabamentos">
-            {galleryOptimized.map((image, index) => (
-              <button
-                class:list={['thumbnail', { active: index === 0 }]}
-                type="button"
-                data-image={image.displaySrc}
-                data-alt={image.alt}
-                aria-label={`Exibir imagem ${index + 1}`}
-                aria-pressed={index === 0 ? 'true' : 'false'}
-              >
+            {galleryOptimized.map((image, galleryIndex) => (
+              <button class:list={['thumbnail', { active: galleryIndex === 0 }]} type="button" data-image={image.displaySrc} data-alt={image.alt} aria-label={`Exibir imagem ${galleryIndex + 1}`} aria-pressed={galleryIndex === 0 ? 'true' : 'false'}>
                 <Image src={image.src} alt="" width={240} height={180} format="webp" quality={72} loading="lazy" />
               </button>
             ))}
@@ -94,61 +66,32 @@ const finishes = [
 
         <div class="product-details">
           <span class="product-kicker">Precisão & engenharia</span>
-          <h1 id="product-title">6061 Pearl</h1>
-          <p class="summary">
-            Alumínio aeroespacial com acabamento acetinado e equilíbrio central.
-            Um instrumento preciso para escrever, desenhar e registrar ideias.
-          </p>
-
-          <div class="price-row">
-            <div>
-              <span>Preço estimado</span>
-              <strong>R$ 1.290,00</strong>
-            </div>
-            <span class="future-lot">Lote futuro</span>
-          </div>
-
+          <h1 id="product-title">{product.name}</h1>
+          <p class="summary">{product.detail} Um instrumento preciso para escrever, desenhar e registrar ideias.</p>
+          <div class="price-row"><div><span>Preço estimado</span><strong>{product.price}</strong></div><span class="future-lot">Lote futuro</span></div>
           <section class="quick-specs" aria-labelledby="specs-title">
             <h2 id="specs-title">Especificações rápidas</h2>
-            <dl>
-              {specs.map(([label, value]) => (
-                <div>
-                  <dt>{label}</dt>
-                  <dd>{value}</dd>
-                </div>
-              ))}
-            </dl>
+            <dl>{specs.map(([label, value]) => <div><dt>{label}</dt><dd>{value}</dd></div>)}</dl>
           </section>
-
           <fieldset class="finishes">
             <legend>Selecione o modelo</legend>
             <div class="finish-options">
-              {finishes.map(([name, finish], index) => (
-                <label class:list={{ selected: index === 0 }}>
-                  <input type="radio" name="finish" value={name} checked={index === 0} />
-                  <strong>{name}</strong>
-                  <span>{finish}</span>
+              {finishes.map((item, finishIndex) => (
+                <label class:list={{ selected: finishIndex === 0 }}>
+                  <input type="radio" name="finish" value={item.name} checked={finishIndex === 0} />
+                  <strong>{item.name}</strong><span>{item.finish}</span>
                 </label>
               ))}
             </div>
           </fieldset>
-
-          <div class="notify-trigger" id="notify-trigger">
-            <Button variant="notify" ariaLabel="Abrir formulário para receber aviso sobre a 6061 Pearl">
-              Avise-me
-            </Button>
-          </div>
+          <div class="notify-trigger" id="notify-trigger"><Button variant="notify" ariaLabel={`Abrir formulário para receber aviso sobre ${product.name}`}>Avise-me</Button></div>
           <p class="notify-note">Cadastre-se para ser avisado quando este lote estiver disponível.</p>
         </div>
       </section>
 
       <section class="technical-note" aria-labelledby="technical-title">
-        <span>Engenharia de precisão</span>
-        <h2 id="technical-title">Especificações técnicas.</h2>
-        <p>
-          Cada componente foi reduzido ao essencial para oferecer controle,
-          estabilidade e uma presença discreta sobre a mesa.
-        </p>
+        <span>Engenharia de precisão</span><h2 id="technical-title">Especificações técnicas.</h2>
+        <p>Cada componente foi reduzido ao essencial para oferecer controle, estabilidade e uma presença discreta sobre a mesa.</p>
       </section>
     </div>
   </main>
@@ -156,44 +99,21 @@ const finishes = [
   <dialog class="notify-dialog" id="notify-dialog" aria-labelledby="notify-title">
     <div class="dialog-panel">
       <button class="dialog-close" type="button" aria-label="Fechar formulário">×</button>
-
       <div class="form-content">
-        <span class="dialog-kicker">Lista de interesse · 6061 Pearl</span>
+        <span class="dialog-kicker">Lista de interesse · {product.name}</span>
         <h2 id="notify-title">Receba o aviso.</h2>
         <p>Informe seus dados e avisaremos quando a próxima edição estiver disponível.</p>
-
         <form id="notify-form">
-          <label>
-            <span>Nome</span>
-            <input type="text" name="name" autocomplete="name" placeholder="Seu nome" required />
-          </label>
-          <label>
-            <span>E-mail</span>
-            <input type="email" name="email" autocomplete="email" placeholder="voce@email.com" required />
-          </label>
-          <label>
-            <span>Telefone</span>
-            <input
-              type="tel"
-              name="phone"
-              autocomplete="tel"
-              inputmode="tel"
-              placeholder="(00) 00000-0000"
-              required
-            />
-          </label>
-          <label class="consent">
-            <input type="checkbox" name="consent" required />
-            <span>Concordo em receber novidades sobre este produto.</span>
-          </label>
+          <label><span>Nome</span><input type="text" name="name" autocomplete="name" placeholder="Seu nome" required /></label>
+          <label><span>E-mail</span><input type="email" name="email" autocomplete="email" placeholder="voce@email.com" required /></label>
+          <label><span>Telefone</span><input type="tel" name="phone" autocomplete="tel" inputmode="tel" placeholder="(00) 00000-0000" required /></label>
+          <label class="consent"><input type="checkbox" name="consent" required /><span>Concordo em receber novidades sobre este produto.</span></label>
           <button class="submit-button" type="submit">Quero ser avisado</button>
         </form>
       </div>
-
       <div class="success-message" hidden>
-        <span>Cadastro recebido</span>
-        <h2>Você está na lista.</h2>
-        <p>Enviaremos um aviso assim que a 6061 Pearl estiver disponível.</p>
+        <span>Cadastro recebido</span><h2>Você está na lista.</h2>
+        <p>Enviaremos um aviso assim que a {product.name} estiver disponível.</p>
         <button class="success-close" type="button">Fechar</button>
       </div>
     </div>

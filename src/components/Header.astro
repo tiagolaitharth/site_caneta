@@ -1,8 +1,8 @@
 ---
 const links = [
-  { href: '/', label: 'Início' },
-  { href: '/pagina-2', label: 'Catálogo' },
-  { href: '/pagina-3', label: 'Produto' },
+  { href: '/', label: 'Início', section: '/' },
+  { href: '/catalogo/', label: 'Catálogo', section: '/catalogo' },
+  { href: '/produtos/6061-pearl/', label: 'Produto', section: '/produtos' },
 ];
 
 const currentPath = Astro.url.pathname.replace(/\/+$/, '') || '/';
@@ -15,8 +15,8 @@ const currentPath = Astro.url.pathname.replace(/\/+$/, '') || '/';
   </a>
 
   <nav class="nav" aria-label="Páginas do site">
-    {links.map(({ href, label }) => {
-      const isActive = currentPath === href;
+    {links.map(({ href, label, section }) => {
+      const isActive = section === '/' ? currentPath === '/' : currentPath.startsWith(section);
       return (
         <a
           href={href}
